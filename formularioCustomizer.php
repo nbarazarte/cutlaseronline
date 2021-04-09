@@ -9,7 +9,7 @@
   
   .woocommerce-product-gallery,
   .price {
-    /*display:none;*/
+    display:none;
   }
 
   .woocommerce-Price-amount, 

@@ -277,39 +277,171 @@ function jQueryDoSomethingAJAX() {
 
 }
 
-/*
-window.addEventListener("load", function() {
-  //Texto
-  var cadena = prompt('Dibuja aquí lo que desees', '');
-  var canvas = document.getElementById("myCanvas");
-  var ctx = canvas.getContext("2d");
-  var posInicial = { x: 10, y: 50 };
+function textoRadio(input,valor){
 
-  ctx.font = "30px Arial";
-  ctx.fillText(cadena, posInicial.x, posInicial.y);
+    document.getElementById(input).value = valor;
+}
 
-  //Obtenemos el acho:
-  var ancho = ctx.measureText(cadena).width;
-  console.log('Ancho:', ancho, 'píxeles.');
+window.addEventListener('load', function () {
+
+    //Materiales:
+    var materialChopo     = document.querySelector('#chopo');
+    var materialMdf       = document.querySelector('#mdf');
+    var materialMukaly    = document.querySelector('#mukaly');
+    var materialPmma      = document.querySelector('#pmma');
+
+    materialChopo.onclick = function () {
+        textoRadio('materiales','chopo');
+        textoRadio('mmGrosor','3mm');
+        document.getElementsByName('grosorChopo')[0].checked = true;
+        document.getElementById('divChopo').style.display    = "inline";
+        document.getElementById('divMdf').style.display      = "none";
+        document.getElementById('divMukaly').style.display   = "none";
+        document.getElementById('divPmma').style.display     = "none";    
+    };
+
+    materialMdf.onclick = function () {
+        textoRadio('materiales','mdf');
+        textoRadio('mmGrosor','2.5mm');
+        document.getElementsByName('grosorMdf')[0].checked = true;
+        document.getElementById('divChopo').style.display    = "none";
+        document.getElementById('divMdf').style.display      = "inline";
+        document.getElementById('divMukaly').style.display   = "none";
+        document.getElementById('divPmma').style.display     = "none";    
+    };
+
+    materialMukaly.onclick = function () {
+        textoRadio('materiales','mukaly');
+        textoRadio('mmGrosor','2mm');
+        document.getElementsByName('grosorMukaly')[0].checked = true;
+        document.getElementById('divChopo').style.display    = "none";
+        document.getElementById('divMdf').style.display      = "none";
+        document.getElementById('divMukaly').style.display   = "inline";
+        document.getElementById('divPmma').style.display     = "none"; 
+    };
+
+    materialPmma.onclick = function () {
+        textoRadio('materiales','pmma');
+        textoRadio('mmGrosor','2mm');
+        document.getElementsByName('grosorPmma')[0].checked = true;        
+        document.getElementById('divChopo').style.display    = "none";
+        document.getElementById('divMdf').style.display      = "none";
+        document.getElementById('divMukaly').style.display   = "none";
+        document.getElementById('divPmma').style.display     = "inline"; 
+    };
+
+    //Grosores Chopo:
+    var chopo3mm    = document.querySelector('#chopo3mm');
+    var chopo4mm    = document.querySelector('#chopo4mm');
+    var chopo5mm    = document.querySelector('#chopo5mm');
+    var chopo6mm    = document.querySelector('#chopo6mm');
+    var chopo8mm    = document.querySelector('#chopo8mm');
+    var chopo10mm   = document.querySelector('#chopo10mm');
+
+    chopo3mm.onclick = function () {
+        textoRadio('mmGrosor','3mm');
+    };
+    chopo4mm.onclick = function () {
+        textoRadio('mmGrosor','4mm');
+    };
+    chopo5mm.onclick = function () {
+        textoRadio('mmGrosor','5mm');
+    };        
+    chopo6mm.onclick = function () {
+        textoRadio('mmGrosor','6mm');
+    };
+    chopo8mm.onclick = function () {
+        textoRadio('mmGrosor','8mm');
+    };
+    chopo10mm.onclick = function () {
+        textoRadio('mmGrosor','10mm');
+    };
+
+    //Grosores Mdf:
+    var mdf2pto5mm    = document.querySelector('#mdf2pto5mm');
+    var mdf3mm    = document.querySelector('#mdf3mm');
+    var mdf4mm    = document.querySelector('#mdf4mm');
+    var mdf5mm    = document.querySelector('#mdf5mm');
+    var mdf7mm    = document.querySelector('#mdf7mm');
+    
+    mdf2pto5mm.onclick = function () {
+        textoRadio('mmGrosor','2.5mm');
+    };
+    mdf3mm.onclick = function () {
+        textoRadio('mmGrosor','3mm');
+    };
+    mdf4mm.onclick = function () {
+        textoRadio('mmGrosor','4mm');
+    };        
+    mdf5mm.onclick = function () {
+        textoRadio('mmGrosor','5mm');
+    };
+    mdf7mm.onclick = function () {
+        textoRadio('mmGrosor','7mm');
+    };
+
+    //Grosores Mukaly:
+    var mukaly2mm    = document.querySelector('#mukaly2mm');
+    
+    mukaly2mm.onclick = function () {
+        textoRadio('mmGrosor','2mm');
+    }; 
+
+    //Grosores Pmma:
+    var pmma2mm    = document.querySelector('#pmma2mm');
+    var pmma3mm    = document.querySelector('#pmma3mm');
+    var pmma4mm    = document.querySelector('#pmma4mm');
+    var pmma5mm    = document.querySelector('#pmma5mm');
+    var pmma6mm    = document.querySelector('#pmma6mm');
+    var pmma8mm    = document.querySelector('#pmma8mm');
+    var pmma10mm    = document.querySelector('#pmma10mm');
+    
+    pmma2mm.onclick = function () {
+        textoRadio('mmGrosor','2mm');
+    };
+    pmma3mm.onclick = function () {
+        textoRadio('mmGrosor','3mm');
+    };
+    pmma4mm.onclick = function () {
+        textoRadio('mmGrosor','4mm');
+    };        
+    pmma5mm.onclick = function () {
+        textoRadio('mmGrosor','5mm');
+    };
+    pmma6mm.onclick = function () {
+        textoRadio('mmGrosor','6mm');
+    };  
+    pmma8mm.onclick = function () {
+        textoRadio('mmGrosor','8mm');
+    };
+    pmma10mm.onclick = function () {
+        textoRadio('mmGrosor','10mm');
+    };
+
+    //Alto y Ancho:
+    var altura   = document.querySelector('#altura');
+    var ancho    = document.querySelector('#ancho');
+
+    altura.onchange = function () {
+
+        validarAlturaAnchura();
+    };  
+
+    ancho.onchange = function () {
+
+        validarAlturaAnchura();
+       
+    };         
 
 });
-*/
 
-function textoRadio(input,name){
+function validarAlturaAnchura(){
 
-    document.getElementById(input).value = name;
-}
-
-
-function miToolTip(div,valor){
-
-    document.getElementById('toolTip_'+div).style.visibility = "visible";
-    document.getElementById('toolTip_'+div).innerHTML = valor;
-}
-
-function miToolTipOut(div){
-
-    //document.getElementById('toolTip_'+div).innerHTML = "";
-    document.getElementById('toolTip_'+div).style.visibility = "hidden";
-
+    if(Number(altura.value > 1290)){
+        document.getElementById('errorAltoAncho').innerHTML = 'La altura tiene que ser menor de 1290mm';
+    }else if(Number(ancho.value > 790)){
+        document.getElementById('errorAltoAncho').innerHTML = 'La anchura tiene que ser menor de 790mm';
+    }else{
+        document.getElementById('errorAltoAncho').innerHTML = '';
+    }
 }

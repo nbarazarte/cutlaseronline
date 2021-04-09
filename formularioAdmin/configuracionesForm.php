@@ -6,7 +6,7 @@
 <div class="col-12 text-center">
 
 <br/>
-<h5 class="card-title">Configuración de Customizer Neon</h5>
+<h5 class="card-title">Configuración de Corte Láser Online</h5>
 
 <form method="post" action="admin-post.php">
 
@@ -28,7 +28,7 @@
                 <!--
                   <input type="text" class="form-control" id="cn_pagina" name="cn_pagina" value="<?php echo esc_html($cn_pagina);?>" required/>
                 -->
-                <input type="number" class="form-control" id="cn_id_producto_personalizado" name="cn_id_producto_personalizado" value="<?php echo esc_html($cn_id_producto_personalizado);?>" required/>
+                <input type="number" class="form-control" id="cn_id_producto_personalizado_CortesLaser" name="cn_id_producto_personalizado_CortesLaser" value="<?php echo esc_html($cn_id_producto_personalizado_CortesLaser);?>" required/>
 
               </div>
 
