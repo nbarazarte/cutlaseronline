@@ -36,63 +36,16 @@
         </div>
       </div>
 
-      <!--<div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-
-            <h5 class="card-title">Precio base del Neon</h5>
-
-              <div class="mb-3">
-                <label for="cn_precio_base" class="form-label">Valor:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_base" name="cn_precio_base" value="<?php echo esc_html($cn_precio_base);?>" required/>
-                
-              </div>
-
-          </div>
-        </div>
-      </div>-->
-
-      <!--<div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-
-            <h5 class="card-title">Impuesto</h5>
-
-              <div class="mb-3">
-                <label for="iva" class="form-label">% Valor:</label>
-                <input type="number" class="form-control" id="iva" name="iva" value="<?php echo esc_html($iva);?>" required/>
-                
-              </div>
-
-          </div>
-        </div>
-      </div>-->
 
       <div class="col-sm-4">
         <div class="card">
           <div class="card-body">
 
-            <h5 class="card-title">Costo Transformador</h5>
+            <h5 class="card-title">Grosor Mukaly</h5>
 
               <div class="mb-3">
-                <label for="costoTransformador" class="form-label">Valor:</label>
-                <input type="number" class="form-control" id="costoTransformador" name="costoTransformador" value="<?php echo esc_html($costoTransformador);?>" required/>
-                
-              </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-body">
-
-            <h5 class="card-title">Controlador de luz</h5>
-
-              <div class="mb-3">
-                <label for="cn_precio_dimmer" class="form-label">Dimmer:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_dimmer" name="cn_precio_dimmer" value="<?php echo esc_html($cn_precio_dimmer);?>" required/>
+                <label for="precio_mukaly_2mm" class="form-label">2 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mukaly_2mm" name="precio_mukaly_2mm" value="<?php echo esc_html($precio_mukaly_2mm);?>" required/>
                 
               </div>
 
@@ -107,37 +60,43 @@
         <div class="card">
           <div class="card-body">
 
-            <h5 class="card-title">Trasera del Neon</h5>
+            <h5 class="card-title">Grosor Chopo</h5>
 
               <div class="mb-3">
-                <label for="cn_precio_metacrilato" class="form-label">Metacrilato:</label>
-                <input type="number" step=".0001" class="form-control" id="cn_precio_metacrilato" name="cn_precio_metacrilato" value="<?php echo esc_html($cn_precio_metacrilato);?>" required/>
+                <label for="precio_chopo_3mm" class="form-label">3 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_3mm" name="precio_chopo_3mm" value="<?php echo esc_html($precio_chopo_3mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_dm" class="form-label">DM:</label>
-                <input type="number" step=".0001" class="form-control" id="cn_precio_dm" name="cn_precio_dm" value="<?php echo esc_html($cn_precio_dm);?>" required/>
+                <label for="precio_chopo_4mm" class="form-label">4 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_4mm" name="precio_chopo_4mm" value="<?php echo esc_html($precio_chopo_4mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_pvc" class="form-label">PVC:</label>
-                <input type="number" step=".0001" class="form-control" id="cn_precio_pvc" name="cn_precio_pvc" value="<?php echo esc_html($cn_precio_pvc);?>" required/>
+                <label for="precio_chopo_5mm" class="form-label">5 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_5mm" name="precio_chopo_5mm" value="<?php echo esc_html($precio_chopo_5mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_contraenchapado" class="form-label">Contrachapado:</label>
-                <input type="number" step=".0001" class="form-control" id="cn_precio_contraenchapado" name="cn_precio_contraenchapado" value="<?php echo esc_html($cn_precio_contraenchapado);?>" required/>
+                <label for="precio_chopo_6mm" class="form-label">6 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_6mm" name="precio_chopo_6mm" value="<?php echo esc_html($precio_chopo_6mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_maderadepino" class="form-label">Madera de pino:</label>
-                <input type="number" step=".0001" class="form-control" id="cn_precio_maderadepino" name="cn_precio_maderadepino" value="<?php echo esc_html($cn_precio_maderadepino);?>" required/>
+                <label for="precio_chopo_8mm" class="form-label">8 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_8mm" name="precio_chopo_8mm" value="<?php echo esc_html($precio_chopo_8mm);?>" required/>
                 
-              </div>                                 
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_chopo_10mm" class="form-label">10 MM:</label>
+                <input type="number" step=".0001" class="form-control" id="precio_chopo_10mm" name="precio_chopo_10mm" value="<?php echo esc_html($precio_chopo_10mm);?>" required/>
+                
+              </div>                                                 
 
           </div>
         </div>
@@ -147,31 +106,37 @@
         <div class="card">
           <div class="card-body">
 
-            <h5 class="card-title">Sujeción del Neon</h5>
+            <h5 class="card-title">Grosor MDF (DM)</h5>
 
               <div class="mb-3">
-                <label for="cn_precio_ancladoalapared" class="form-label">Anclado a la pared:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_ancladoalapared" name="cn_precio_ancladoalapared" value="<?php echo esc_html($cn_precio_ancladoalapared);?>" required/>
+                <label for="precio_mdf_25mm" class="form-label">2.5 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mdf_25mm" name="precio_mdf_25mm" value="<?php echo esc_html($precio_mdf_25mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_colgadoaltecho" class="form-label">Colgado al techo:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_colgadoaltecho" name="cn_precio_colgadoaltecho" value="<?php echo esc_html($cn_precio_colgadoaltecho);?>" required/>
+                <label for="precio_mdf_3mm" class="form-label">3 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mdf_3mm" name="precio_mdf_3mm" value="<?php echo esc_html($precio_mdf_3mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_colgadocomouncuadro" class="form-label">Colgado como un cuadro:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_colgadocomouncuadro" name="cn_precio_colgadocomouncuadro" value="<?php echo esc_html($cn_precio_colgadocomouncuadro);?>" required/>
+                <label for="precio_mdf_4mm" class="form-label">4 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mdf_4mm" name="precio_mdf_4mm" value="<?php echo esc_html($precio_mdf_4mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_sinsujecion" class="form-label">Sin sujeción:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_sinsujecion" name="cn_precio_sinsujecion" value="<?php echo esc_html($cn_precio_sinsujecion);?>" required/>
+                <label for="precio_mdf_5mm" class="form-label">5 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mdf_5mm" name="precio_mdf_5mm" value="<?php echo esc_html($precio_mdf_5mm);?>" required/>
                 
-              </div>                                 
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_mdf_7mm" class="form-label">7 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_mdf_7mm" name="precio_mdf_7mm" value="<?php echo esc_html($precio_mdf_7mm);?>" required/>
+                
+              </div>                                               
 
           </div>
         </div>
@@ -181,19 +146,49 @@
         <div class="card">
           <div class="card-body">
 
-            <h5 class="card-title">Tiempos de entrega</h5>
+            <h5 class="card-title">Grosor PMMA (METACRILATO)</h5>
 
               <div class="mb-3">
-                <label for="cn_precio_sietediaslaborales" class="form-label">7 días laborales:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_sietediaslaborales" name="cn_precio_sietediaslaborales" value="<?php echo esc_html($cn_precio_sietediaslaborales);?>" required/>
+                <label for="precio_metacrilato_2mm" class="form-label">2 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_2mm" name="precio_metacrilato_2mm" value="<?php echo esc_html($precio_metacrilato_2mm);?>" required/>
                 
               </div>
 
               <div class="mb-3">
-                <label for="cn_precio_4872" class="form-label">48 a 72 horas:</label>
-                <input type="number" step=".01" class="form-control" id="cn_precio_4872" name="cn_precio_4872" value="<?php echo esc_html($cn_precio_4872);?>" required/>
+                <label for="precio_metacrilato_3mm" class="form-label">3 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_3mm" name="precio_metacrilato_3mm" value="<?php echo esc_html($precio_metacrilato_3mm);?>" required/>
 
               </div>
+
+              <div class="mb-3">
+                <label for="precio_metacrilato_4mm" class="form-label">4 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_4mm" name="precio_metacrilato_4mm" value="<?php echo esc_html($precio_metacrilato_4mm);?>" required/>
+                
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_metacrilato_5mm" class="form-label">5 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_5mm" name="precio_metacrilato_5mm" value="<?php echo esc_html($precio_metacrilato_5mm);?>" required/>
+
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_metacrilato_6mm" class="form-label">6 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_6mm" name="precio_metacrilato_6mm" value="<?php echo esc_html($precio_metacrilato_6mm);?>" required/>
+
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_metacrilato_8mm" class="form-label">8 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_8mm" name="precio_metacrilato_8mm" value="<?php echo esc_html($precio_metacrilato_8mm);?>" required/>
+                
+              </div>
+
+              <div class="mb-3">
+                <label for="precio_metacrilato_10mm" class="form-label">10 MM:</label>
+                <input type="number" step=".01" class="form-control" id="precio_metacrilato_10mm" name="precio_metacrilato_10mm" value="<?php echo esc_html($precio_metacrilato_10mm);?>" required/>
+
+              </div>                              
 
           </div>
         </div>

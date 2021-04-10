@@ -1,218 +1,24 @@
-//IMPORTANTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Para deshabiltar por defecto el boton de añadir al carrito
-//en la linea 249 de jQueryDoSomethingAJAX() se habilita nuevamente!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-if(document.getElementById('rotulo') !== null){
-    document.getElementsByName("add-to-cart")[0].style.visibility = 'hidden';    
-}
+function calcularPrecio() {
 
-function deshabiltarBotonCart(){
-    //console.log('deshabilita el boton');
-    document.getElementsByName("add-to-cart")[0].style.visibility = 'hidden';       
-}
+    var material        = document.getElementById('materiales').value;
+    var grosor          = document.getElementById('mmGrosor').value;
+    var longitud        = document.getElementById('longitud').value;
+    var precioGrosor    = document.getElementById('precioGrosor').value;
+    var precioFinal;
 
-function jQueryDoSomethingAJAX() {
-    // Preparamos los parámetros para la petición..
-    //var formulario = document.forms.namedItem("customizerNeon");
-
-    var rotulo = document.getElementById('rotulo').value
-    var alto = document.getElementById('alto').value;
-    var ancho = document.getElementById('ancho').value;
-
-    var x = document.getElementById("letra").selectedIndex;
-    var y = document.getElementById("letra").options;
-    //alert("Index: " + y[x].index + " is " + y[x].text);
-    var fuenteLetrasText = y[x].text;
-    var fuenteLetras = y[x].value;
-
-    var x = document.getElementById("tiempos").selectedIndex;
-    var y = document.getElementById("tiempos").options;
-    //alert("Index: " + y[x].index + " is " + y[x].text);
-    var tiemposEntregaText = y[x].text;
-    var tiemposEntrega = y[x].value;
-
-    var contornos = document.getElementsByName("contornos");
-    var txt = "";
-    var i;
-    for (i = 0; i < contornos.length; i++) {
-        if (contornos[i].checked) {
-          txt = contornos[i].value;
-        }
+    if(longitud == ""){
+        longitd = 0;
     }
 
-    var contorno = txt;
-
-    var traseraneon = document.getElementsByName("traseraneon");
-    var txt = "";
-    var i;
-    for (i = 0; i < traseraneon.length; i++) {
-        if (traseraneon[i].checked) {
-          txt = traseraneon[i].value;
-        }
-    }
-
-    var textoCorrecto;
-    switch (document.getElementById("tipoTrasera").value) {
-      case 'maderadepino':
-        textoCorrecto = "madera de pino";
-        break;
-
-        default:
-            textoCorrecto = document.getElementById("tipoTrasera").value;
-        break;
-    }
-
-    var tipoTrasera = textoCorrecto;
-    var trasera = txt;
-
-    var sujecion = document.getElementsByName("sujecion");
-    var txt = "";
-    var i;
-    for (i = 0; i < sujecion.length; i++) {
-        if (sujecion[i].checked) {
-          txt = sujecion[i].value;
-        }
-    }
-
-    var textoCorrecto;
-    switch (document.getElementById("tipoSujecion").value) {
-      case 'ancladoalapared':
-        textoCorrecto = "anclado a la pared";
-        break;
-
-      case 'colgadoaltecho':
-        textoCorrecto = "colgado al techo";
-        break;
-
-      case 'colgadocomouncuadro':
-        textoCorrecto = "colgado como un cuadro";
-        break;
-
-      case 'sinsujecion':
-        textoCorrecto = "sin sujeción";
-        break;                          
-
-        default:
-            textoCorrecto = document.getElementById("tipoSujecion").value;
-        break;
-    }
-
-    var tipoSujecion = textoCorrecto;
-    var sujecionNeon = txt;
-
-    var dimmer = document.getElementsByName("dimmer");
-    var txt = "";
-    var i;
-    for (i = 0; i < dimmer.length; i++) {
-        if (dimmer[i].checked) {
-          txt = dimmer[i].value;
-        }
-    }
-
-    var textoCorrecto;
-    switch (document.getElementById("tipoDimmer").value) {
-      case 'condimmer':
-        textoCorrecto = "con dimmer";
-        break;
-
-      case 'sindimmer':
-        textoCorrecto = "sin dimmer";
-        break;
-
-        default:
-            textoCorrecto = document.getElementById("tipoDimmer").value;
-        break;
-    }
-
-    var tipoDimmer = textoCorrecto;
-    var dimmerNeon = txt;       
-
-    var colores = document.getElementsByName("colores");
-    var txt = "";
-    var i;
-    for (i = 0; i < colores.length; i++) {
-        if (colores[i].checked) {
-          txt = colores[i].value;
-        }
-    }
-
-    var color = txt;
-
-
-    var anchocm = document.getElementById("ancho").value;//ancho;///72/0.393701;
-
-    var alturacm = document.getElementById("altura").value;
-
-
-    //ancho del SVG:
-    var anchoSVG = document.getElementById('anchoSVG').value;
-    var anchoSVGCorreccion = anchoSVG * 0.76;
-    var costoTransformador = Number(document.getElementById('costoTransformador').value);
-
-    document.getElementById('impuesto').value = document.getElementById('iva').value;
-    //Calculo el precio del rótulo y lo envío al campo oculto en el formulario del carrito:
-
-    console.log("Ancho SVG Path A en cm: " + anchoSVG);
-    console.log("Ancho SVG Path B en cm: " + anchoSVGCorreccion.toFixed(3));
-    console.log("Ancho en cm: " + anchocm);
-    console.log("Altura en cm: " + alturacm);
-    console.log("Tamaño de letra: " + alto);
-    //console.log("Alto en px: " + altopx);
-    console.log("Trasera Neon: " +trasera);
-    console.log("Sujecion Neon: " + sujecionNeon);
-    console.log("dimmerNeon: "+ dimmerNeon);
-    console.log("Tiempo entrega: "+ tiemposEntrega);
-    console.log("Costo Transformador: "+ costoTransformador);
-
-
-
-    console.log("-----------------------------------------------");
-
-    traseraNeon     = Number(anchocm) * Number(alto) * Number(trasera);
-    sujecionNeon    = Number(sujecionNeon);
-    dimmerNeon      = Number(dimmerNeon);
-    tiemposEntrega  = Number(tiemposEntrega);
-    tipoLetra       = (Number(anchoSVGCorreccion) / 100) * 7;
-    
-    console.log("Total Trasera: " +anchocm +" x "+alto +" x "+ trasera +" = "+ traseraNeon.toFixed(3));
-    console.log("Total sujecion Neon: " + sujecionNeon);
-    console.log("Total dimmer Neon: " + dimmerNeon);
-    console.log("Total tiempos de entrega: " + tiemposEntrega);
-    console.log("Tipo de letra: ("+anchoSVGCorreccion +"/100) x 7 = "+ tipoLetra.toFixed(3));
-
-    //((Tipo de letra + trasera de neón + sujeción del neón + dimmer ) * 3) + tiempo de entrega
-
-    subTotalprecio     = ((tipoLetra + traseraNeon + sujecionNeon + dimmerNeon + costoTransformador) * 3) + tiemposEntrega ;
-
-    var iva = Number(document.getElementById('iva').value / 100);
-
-    precioFinal     = subTotalprecio;//(subTotalprecio * iva) + subTotalprecio;
-
-    console.log("Precio: (("+tipoLetra.toFixed(3)+" + "+traseraNeon.toFixed(3)+" + "+sujecionNeon+" + "+dimmerNeon+" + "+costoTransformador+") x 3 ) + "+tiemposEntrega+" = "+precioFinal.toFixed(3));
-
-
-    if(document.getElementById("altura").value == 0){
-        precioFinal = 0;
-    }
+    precioFinal         = (Number(longitud/1000) * Number(precioGrosor));
 
     var data = {
         'action': 'jnjtest',
-        'rotulo': rotulo,
-        'alto': alto,
-        'ancho': ancho,    
-        'fuenteLetras': fuenteLetras,
-        'tiemposEntrega': tiemposEntrega,
-        'contorno': contorno,
-        'trasera': trasera,
-        'tipoTrasera': tipoTrasera,
-        'sujecionNeon': sujecionNeon,
-        'tipoSujecion': tipoSujecion,
-        'dimmerNeon': dimmerNeon,
-        'color': color,
-        'anchocm': anchocm,
-        'fuenteLetrasText': fuenteLetrasText,
-        'tiemposEntregaText': tiemposEntregaText,
-        'subTotalprecio': subTotalprecio.toFixed(2),
-        'precioFinal': precioFinal.toFixed(2),
-
+        'material': material,
+        'grosor': grosor,
+        'longitud': longitud,
+        'precioGrosor': precioGrosor,
+        'precioFinal': precioFinal.toFixed(3),
     };
 
     var protocolo = window.location.protocol;
@@ -234,11 +40,6 @@ function jQueryDoSomethingAJAX() {
         var ruta = url + "/wp-admin/admin-ajax.php";
     }
 
-     //document.getElementById("myDIV").style.display = 'inline';
-     document.getElementById("myDIV").style.visibility = 'visible';
-
-     document.getElementById("myButton").style.visibility = 'hidden';
-
     // Hacemos la petición al endpoint de WordPress..
     jQuery.post(ruta, data, function (response) {
 
@@ -246,33 +47,12 @@ function jQueryDoSomethingAJAX() {
         //console.log(response);
 
         if(response != null){
-            //document.getElementById("myDIV").style.display = "none";
-            document.getElementById("myDIV").style.visibility = "hidden";
-            
-            document.getElementById("myButton").style.visibility = "visible";
+
         }
        
+        document.getElementById('precio_final').value = precioFinal.toFixed(3);
         document.getElementById('response').innerHTML = response;
-
-        document.getElementById('precio_final_rotulo').value     = precioFinal.toFixed(2);
-        document.getElementById('subTotalPrecio').value          = subTotalprecio.toFixed(2);
-        document.getElementById('texto_rotulo').value            = rotulo;
-        document.getElementById('fuenteLetrasText').value        = fuenteLetrasText;
-        document.getElementById('anchocm').value                 = anchocm;
-        
-        document.getElementById('alturacm').value                 = alturacm;
-
-        document.getElementById('altocm').value                  = alto;
-        document.getElementById('tipoTraseraSumario').value      = tipoTrasera;
-        document.getElementById('tipoSujecionSumario').value     = tipoSujecion;
-        document.getElementById('tipoDimmerSumario').value       = tipoDimmer;
-        document.getElementById('tiempoEntregaSumario').value    = tiemposEntregaText;
-        document.getElementById('tipoContornoSumario').value     = contorno;
-        document.getElementById('colorSumario').value            = color;
-        document.getElementById('pathA').value                   = anchoSVG;
-        document.getElementById('pathB').value                   = anchoSVGCorreccion.toFixed(3);
-
-        document.getElementsByName("add-to-cart")[0].style.visibility = 'visible';
+  
     });
 
 }
@@ -293,6 +73,9 @@ window.addEventListener('load', function () {
     materialChopo.onclick = function () {
         textoRadio('materiales','chopo');
         textoRadio('mmGrosor','3mm');
+        var chopo3mmPrecio = document.getElementById('chopo3mm').value;
+        textoRadio('precioGrosor',chopo3mmPrecio);
+        calcularPrecio();
         document.getElementsByName('grosorChopo')[0].checked = true;
         document.getElementById('divChopo').style.display    = "inline";
         document.getElementById('divMdf').style.display      = "none";
@@ -303,6 +86,9 @@ window.addEventListener('load', function () {
     materialMdf.onclick = function () {
         textoRadio('materiales','mdf');
         textoRadio('mmGrosor','2.5mm');
+        var mdf2pto5mmPrecio = document.getElementById('mdf2pto5mm').value;
+        textoRadio('precioGrosor',mdf2pto5mmPrecio);
+        calcularPrecio();
         document.getElementsByName('grosorMdf')[0].checked = true;
         document.getElementById('divChopo').style.display    = "none";
         document.getElementById('divMdf').style.display      = "inline";
@@ -313,6 +99,9 @@ window.addEventListener('load', function () {
     materialMukaly.onclick = function () {
         textoRadio('materiales','mukaly');
         textoRadio('mmGrosor','2mm');
+        var mukaly2mmPrecio = document.getElementById('mukaly2mm').value;
+        textoRadio('precioGrosor',mukaly2mmPrecio);
+        calcularPrecio();      
         document.getElementsByName('grosorMukaly')[0].checked = true;
         document.getElementById('divChopo').style.display    = "none";
         document.getElementById('divMdf').style.display      = "none";
@@ -323,6 +112,9 @@ window.addEventListener('load', function () {
     materialPmma.onclick = function () {
         textoRadio('materiales','pmma');
         textoRadio('mmGrosor','2mm');
+        var pmma2mmPrecio = document.getElementById('pmma2mm').value;
+        textoRadio('precioGrosor',pmma2mmPrecio);
+        calcularPrecio();      
         document.getElementsByName('grosorPmma')[0].checked = true;        
         document.getElementById('divChopo').style.display    = "none";
         document.getElementById('divMdf').style.display      = "none";
@@ -340,21 +132,33 @@ window.addEventListener('load', function () {
 
     chopo3mm.onclick = function () {
         textoRadio('mmGrosor','3mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     chopo4mm.onclick = function () {
         textoRadio('mmGrosor','4mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     chopo5mm.onclick = function () {
         textoRadio('mmGrosor','5mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };        
     chopo6mm.onclick = function () {
         textoRadio('mmGrosor','6mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     chopo8mm.onclick = function () {
         textoRadio('mmGrosor','8mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     chopo10mm.onclick = function () {
         textoRadio('mmGrosor','10mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
 
     //Grosores Mdf:
@@ -366,18 +170,28 @@ window.addEventListener('load', function () {
     
     mdf2pto5mm.onclick = function () {
         textoRadio('mmGrosor','2.5mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     mdf3mm.onclick = function () {
         textoRadio('mmGrosor','3mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     mdf4mm.onclick = function () {
         textoRadio('mmGrosor','4mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };        
     mdf5mm.onclick = function () {
         textoRadio('mmGrosor','5mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     mdf7mm.onclick = function () {
         textoRadio('mmGrosor','7mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
 
     //Grosores Mukaly:
@@ -385,6 +199,8 @@ window.addEventListener('load', function () {
     
     mukaly2mm.onclick = function () {
         textoRadio('mmGrosor','2mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     }; 
 
     //Grosores Pmma:
@@ -398,29 +214,44 @@ window.addEventListener('load', function () {
     
     pmma2mm.onclick = function () {
         textoRadio('mmGrosor','2mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     pmma3mm.onclick = function () {
         textoRadio('mmGrosor','3mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     pmma4mm.onclick = function () {
         textoRadio('mmGrosor','4mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };        
     pmma5mm.onclick = function () {
         textoRadio('mmGrosor','5mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     pmma6mm.onclick = function () {
         textoRadio('mmGrosor','6mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };  
     pmma8mm.onclick = function () {
         textoRadio('mmGrosor','8mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
     pmma10mm.onclick = function () {
         textoRadio('mmGrosor','10mm');
+        textoRadio('precioGrosor',this.value);
+        calcularPrecio();
     };
 
-    //Alto y Ancho:
+    //Alto, Ancho y Longitud:
     var altura   = document.querySelector('#altura');
     var ancho    = document.querySelector('#ancho');
+    var longitud    = document.querySelector('#longitud');
 
     altura.onchange = function () {
 
@@ -430,18 +261,25 @@ window.addEventListener('load', function () {
     ancho.onchange = function () {
 
         validarAlturaAnchura();
-       
-    };         
+    };
+
+    longitud.onchange = function () {
+
+        calcularPrecio();
+    }; 
 
 });
 
 function validarAlturaAnchura(){
 
     if(Number(altura.value > 1290)){
-        document.getElementById('errorAltoAncho').innerHTML = 'La altura tiene que ser menor de 1290mm';
+        document.getElementById('errorAltoAncho').innerHTML = 'La altura tiene que ser menor de 1290mm. <br/> El botón de Añadir al carrito será deshabilitado';
+        document.getElementsByName("add-to-cart")[0].disabled = true;  
     }else if(Number(ancho.value > 790)){
-        document.getElementById('errorAltoAncho').innerHTML = 'La anchura tiene que ser menor de 790mm';
+        document.getElementById('errorAltoAncho').innerHTML = 'La anchura tiene que ser menor de 790mm. <br/> El botón de Añadir al carrito será deshabilitado';
+        document.getElementsByName("add-to-cart")[0].disabled = true;  
     }else{
         document.getElementById('errorAltoAncho').innerHTML = '';
+        document.getElementsByName("add-to-cart")[0].disabled = false;  
     }
 }

@@ -22,7 +22,7 @@
   .woocommerce div.product div.summary, 
   .woocommerce-page #content div.product div.summary, 
   .woocommerce-page div.product div.summary {
-    /*float: left;*/
+    /*float: left;*/ display:none;
   }
 
   .product_title, h1.entry-title{

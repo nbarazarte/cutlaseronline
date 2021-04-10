@@ -1,20 +1,29 @@
-<div id="response">
-  
-  <h1>
-    <small class="text-muted"> <strong> 0<?php echo esc_html($cn_precio_base);?>&euro;<strong></small>
-      <!--<input type="text" class="form-control" id="precio_final_rotulo" name="precio_final_rotulo" value="0.00" readonly="yes">-->
-  </h1>
+<form class="" action="http://localhost/desarrollo/index.php/product/otro/" method="post" enctype='multipart/form-data'>
 
-  
+	<?php
+	  require 'formaContorno.php';
+	  require 'opciones.php';
+	?>
 
-</div>
+	<div class="quantity">
+	
+		<label class="screen-reader-text" for="quantity_6071259a6079e">otro cantidad</label>
+			<input
+				type="number"
+				id="quantity_6071259a6079e"
+				class="input-text qty text"
+				step="1"
+				min="1"
+				max=""
+				name="quantity"
+				value="1"
+				title="Cantidad"
+				size="4"
+				placeholder=""
+				inputmode="numeric" />
+	</div>
+	
+	<button type="submit" name="add-to-cart" value="26" class="single_add_to_cart_button button alt">Añadir al carrito</button>
 
-
-      <?php
-        require 'formaContorno.php';
-        require 'opciones.php';
-      ?>
-
-
-
+</form>
 <br/>
