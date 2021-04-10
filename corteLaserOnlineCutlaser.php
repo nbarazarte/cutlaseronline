@@ -257,11 +257,11 @@ function jnj_mi_funcion_CortesLaser()
     $precioGrosor = $_POST['precioGrosor'];
     $precioFinal = $_POST['precioFinal'];
 
-    echo '<small class="text-muted"> 
-
-          '.$longitud.' mm de corte lineal por '.$precioGrosor.' &euro; de '.strtoupper($material).' de '.$grosor.' = &euro; '.$precioFinal.'
-
-        </small>';
+    echo '<br>
+        <label style="width:600px;height:60px; background-color: #004c80; color: #ffffff;  padding: 3% 0; border-radius: 14px;" >
+           '.$longitud.' mm de corte lineal por '.$precioGrosor.' &euro; de '.strtoupper($material).' de '.$grosor.' = &euro; '.$precioFinal.'
+        </label>
+        <br>';
 
   wp_die();
 }

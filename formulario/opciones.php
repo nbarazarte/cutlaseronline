@@ -45,23 +45,11 @@
       <label for="comentario" class="form-label" style="color: #004C80">¿ALGUNA PETICIÓN O COMENTARIO ADICIONAL?</label>
       <textarea class="texto" id="comentario" name="comentario" rows="3"></textarea>
     
-    <input type="hidden" id="precio_final" name="precio_final" value="0" readonly="yes">
+      <input type="hidden" id="precio_final" name="precio_final" value="0" readonly="yes">
 
-    <div id="response">
-      
-      
-        <small class="text-muted"> 
+      <div id="response">
 
-          110 mm de corte lineal por 7.5 <strong> &euro;</strong> de CHOPO de 3MM = <strong> &euro;</strong>
-
-        </small>
-
-      
-
-    </div>
-
-
-
+      </div>
 
     </div>
 
