@@ -355,6 +355,7 @@ function campos_ocultos_CortesLaser() {
 add_action( 'woocommerce_before_add_to_cart_button', 'campos_ocultos_CortesLaser', 10 );
 
 
+
 /**
  * Add engraving text to cart item.
  *
@@ -364,7 +365,70 @@ add_action( 'woocommerce_before_add_to_cart_button', 'campos_ocultos_CortesLaser
  *
  * @return array
  */
+
 function iconic_add_engraving_text_to_cart_item_CortesLaser( $cart_item_data, $product_id, $variation_id ) {
+
+  $upload_dir=wp_upload_dir();
+  $path=$upload_dir['basedir'].'/myuploads/';  //upload dir.
+  if(!is_dir($path)) { mkdir($path); }
+
+  $target_dir = $path;//"uploads/";
+  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+  // Check if image file is a actual image or fake image
+  /*if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+      echo "File is an image - " . $check["mime"] . ".";
+      $uploadOk = 1;
+    } else {
+      echo "No es un formato válido. <br/>";
+      $uploadOk = 0;
+    }
+  }*/
+
+  // Check if file already exists
+  if (file_exists($target_file)) {
+    echo "Disculpe, el archivo ya existe. <br/>";
+    $uploadOk = 0;
+    return $cart_item_data;
+  }
+
+  // Check file size
+  if ($_FILES["fileToUpload"]["size"] > 5000000) {
+    echo "Disculpe, el tamaño del archivo es muy grande. <br/>";
+    $uploadOk = 0;
+    return $cart_item_data;
+  }
+
+  // Allow certain file formats
+  if($imageFileType != "dxf" && $imageFileType != "dwg" && $imageFileType != "ai" && $imageFileType != "pdf" && $imageFileType != "eps" && $imageFileType != "cdr" && $imageFileType != "zip"  ) {
+    echo "Disculpe, solo los formatos DXF, DWG, AI, PDF, EPS, CDR y ZIP son permitidos. <br/>";
+    $uploadOk = 0;
+    return $cart_item_data;
+  }
+
+  /*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    echo "Disculpe, solo los formatos JPG, JPEG, PNG & GIF son permitidos. <br/>";
+    $uploadOk = 0;
+  }*/
+
+  // Check if $uploadOk is set to 0 by an error
+  if ($uploadOk == 0) {
+    echo "Error, el archivo no se ha subido al servidor. <br/>";
+    return $cart_item_data;
+  // if everything is ok, try to upload file
+  } else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+      //echo "El archivo ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " se ha subido con éxito. <br/>";
+    } else {
+      echo "Disculpe, ha habido un error subiendo el archivo. <br/>";
+      return $cart_item_data;
+    }
+  }
+
   /*
   $precio_final         = filter_input( INPUT_POST, 'precio_final' );
   $materiales           = filter_input( INPUT_POST, 'materiales_final' );
@@ -389,30 +453,9 @@ function iconic_add_engraving_text_to_cart_item_CortesLaser( $cart_item_data, $p
   $product = wc_get_product( $product_id );
   $price = $product->get_price();
   // extra pack checkbox
-      echo "-->".$price;
-      echo "<br/>";
-      echo "-->".$precio_final;
-      //die();
-      echo "<br/>";
+
   //$cart_item_data['new_price'] = $price + $precio_final;        
-  $cart_item_data['new_price'] = $precio_final;       
-  
-
-echo "-->nuevo:".$cart_item_data['new_price'];
-
-//die();
-
-  /*
-  echo "-->".$precio_final;       
-
-  echo "-->".$cart_item_data['new_price'];
-
-  echo "<br/>";
-
-  echo "-->".$engraving_text; die();
-
-  */
-
+  $cart_item_data['new_price']    = $precio_final;       
   $cart_item_data['materiales']   = $materiales;
   $cart_item_data['mmGrosor']     = $mmGrosor;
   $cart_item_data['ancho']        = $ancho;
@@ -424,6 +467,8 @@ echo "-->nuevo:".$cart_item_data['new_price'];
 }
 
 add_filter( 'woocommerce_add_cart_item_data', 'iconic_add_engraving_text_to_cart_item_CortesLaser', 10, 3 );
+
+
 
 
 /**

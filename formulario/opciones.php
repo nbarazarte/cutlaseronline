@@ -32,11 +32,11 @@
     <div class="col-sm-12">
       
       <br/>
-      <label for="formFile" class="form-label" style="color: #004C80">ADJUNTA AQUÍ TU ARCHIVO</label>
+      <label for="fileToUpload" class="form-label" style="color: #004C80">ADJUNTA AQUÍ TU ARCHIVO</label>
         <p style="font-weight: normal;">
           Los formatos con los que trabajamos son: .dxf, .dwg, .pdf, .ai, .eps y .cdr. (Tamaño máximo: 128MB) Si son demasiado grandes puede enviarnos un correo a info@cutlaser.eu
         </p>
-      <input class="form-control" type="file" id="formFile" style="width: 500px;border-radius: 12px; border: 2px solid #004c80 !important;" required="yes"> 
+      <input class="form-control" type="file" id="fileToUpload" name="fileToUpload" style="width: 500px;border-radius: 12px; border: 2px solid #004c80 !important;" required="yes"> 
  
     </div> 
 
