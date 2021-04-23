@@ -9358,40 +9358,37 @@
 .cc-selector input:checked +.drinkcard-cc{
       -webkit-filter: none;
        -moz-filter: none;
-            filter: none;color: #fff;
+            filter: none;
+
+
+background-color: #004c80 !important;
+    color: #fff!important;
+    padding: 20px 20px;
+    margin-left: 10px;
+    border-radius: 14px;
+    border: 3px solid #004c80!important;
+
+
+
+
 }
 .drinkcard-cc{
     cursor:pointer;
-
-    background-color: #004c80;
-    color: #000;
-
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    /*width:150px;height:70px;*/
-    -webkit-transition: all 100ms ease-in;
-       -moz-transition: all 100ms ease-in;
-            transition: all 100ms ease-in;
-         
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);   
+    background-color: #f0f0f0 !important;
+    color: #000!important;
+    padding: 16px 20px!important;
+    font-size: 12px!important;
+    border: 3px #004c80 solid;
+    margin-left: 10px;
+    border-radius: 14px;
 }
 
 .drinkcard-cc:hover{
   
-    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-            filter: brightness(1.2) grayscale(.5) opacity(.9);
-    /*width: 75px;
-    height: 75px;*/
+
 }
 
-/* Extras */
-a:visited{color:#888}
-a{color:#444;text-decoration:none;}
-p{margin-bottom:.3em;}
+
 
 
 .tituloPpal{

@@ -311,7 +311,7 @@ function iconic_output_engraving_field_CortesLaser() {
 
 }
 
-add_action( 'woocommerce_before_single_product', 'iconic_output_engraving_field_CortesLaser', 10 );
+//add_action( 'woocommerce_before_single_product', 'iconic_output_engraving_field_CortesLaser', 10 );
 
 //woocommerce_single_product_summary
 //woocommerce_before_single_product
@@ -334,25 +334,36 @@ function campos_ocultos_CortesLaser() {
         return;
       }
 
-  ?>
+    // Conseguir el valor del Precio base de todos los elementos:
+    $precio_chopo_3mm                           = get_option( 'precio_chopo_3mm' ) ;
+    $precio_chopo_4mm                           = get_option( 'precio_chopo_4mm' ) ;
+    $precio_chopo_5mm                           = get_option( 'precio_chopo_5mm' ) ;
+    $precio_chopo_6mm                           = get_option( 'precio_chopo_6mm' ) ;
+    $precio_chopo_8mm                           = get_option( 'precio_chopo_8mm' ) ;
+    $precio_chopo_10mm                          = get_option( 'precio_chopo_10mm' ) ;
 
-  <div class="bsnamespace"> 
+    $precio_mdf_25mm                            = get_option( 'precio_mdf_25mm' ) ;
+    $precio_mdf_3mm                             = get_option( 'precio_mdf_3mm' ) ;
+    $precio_mdf_4mm                             = get_option( 'precio_mdf_4mm' ) ;
+    $precio_mdf_5mm                             = get_option( 'precio_mdf_5mm' ) ;
+    $precio_mdf_7mm                             = get_option( 'precio_mdf_7mm' ) ;
 
-    <input type="text" id="precio_final" name="precio_final" value="567" readonly="yes">
-    
-    <input type="text" id="altura_final" name="altura_final" value="10" readonly="yes">
-    <input type="text" id="ancho_final" name="ancho_final" value="20" readonly="yes">
-    <input type="text" id="longitud_final" name="longitud_final" value="30" readonly="yes">
-    <input type="text" id="materiales_final" name="materiales_final" value="chopo" readonly="yes">
-    <input type="text" id="mmGrosor_final" name="mmGrosor_final" value="2mm" readonly="yes">
+    $precio_mukaly_2mm                          = get_option( 'precio_mukaly_2mm' ) ;
 
-  </div>
-  <?php
+    $precio_metacrilato_2mm                     = get_option( 'precio_metacrilato_2mm' ) ;
+    $precio_metacrilato_3mm                     = get_option( 'precio_metacrilato_3mm' ) ;
+    $precio_metacrilato_4mm                     = get_option( 'precio_metacrilato_4mm' ) ;
+    $precio_metacrilato_5mm                     = get_option( 'precio_metacrilato_5mm' ) ;
+    $precio_metacrilato_6mm                     = get_option( 'precio_metacrilato_6mm' ) ;
+    $precio_metacrilato_8mm                     = get_option( 'precio_metacrilato_8mm' ) ;
+    $precio_metacrilato_10mm                    = get_option( 'precio_metacrilato_10mm' ) ;
+
+    require('formularioCustomizer.php');
 
 }
 
 //add_action( 'woocommerce_before_single_product_summary', 'iconic_output_engraving_field_CortesLaser', 10 );
-add_action( 'woocommerce_before_add_to_cart_button', 'campos_ocultos_CortesLaser', 10 );
+add_action( 'woocommerce_before_single_product', 'campos_ocultos_CortesLaser', 10 );
 
 
 
@@ -368,12 +379,24 @@ add_action( 'woocommerce_before_add_to_cart_button', 'campos_ocultos_CortesLaser
 
 function iconic_add_engraving_text_to_cart_item_CortesLaser( $cart_item_data, $product_id, $variation_id ) {
 
+  session_start();
+
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+
+  $_SESSION['mensajeError'] = '';
+
   $upload_dir=wp_upload_dir();
   $path=$upload_dir['basedir'].'/myuploads/';  //upload dir.
   if(!is_dir($path)) { mkdir($path); }
 
   $target_dir = $path;//"uploads/";
-  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+  $target_file = $target_dir . time().basename($_FILES["fileToUpload"]["name"]);
+
+  //echo $target_file;die();
   $uploadOk = 1;
   $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
@@ -391,52 +414,39 @@ function iconic_add_engraving_text_to_cart_item_CortesLaser( $cart_item_data, $p
 
   // Check if file already exists
   if (file_exists($target_file)) {
-    echo "Disculpe, el archivo ya existe. <br/>";
+    //echo "Disculpe, el archivo ya existe. <br/>";
+    $_SESSION['mensajeError'] = 'El nombre del archivo ya existe';
     $uploadOk = 0;
-    return $cart_item_data;
   }
 
   // Check file size
   if ($_FILES["fileToUpload"]["size"] > 5000000) {
-    echo "Disculpe, el tamaño del archivo es muy grande. <br/>";
-    $uploadOk = 0;
-    return $cart_item_data;
+    //echo "Disculpe, el tamaño del archivo es muy grande. <br/>";
+    $_SESSION['mensajeError'] = 'El tamaño del archivo es muy grande';
+    $uploadOk = 0;    
   }
 
   // Allow certain file formats
   if($imageFileType != "dxf" && $imageFileType != "dwg" && $imageFileType != "ai" && $imageFileType != "pdf" && $imageFileType != "eps" && $imageFileType != "cdr" && $imageFileType != "zip"  ) {
-    echo "Disculpe, solo los formatos DXF, DWG, AI, PDF, EPS, CDR y ZIP son permitidos. <br/>";
-    $uploadOk = 0;
-    return $cart_item_data;
+    //echo "Disculpe, solo los formatos DXF, DWG, AI, PDF, EPS, CDR y ZIP son permitidos. <br/>";
+    $_SESSION['mensajeError'] = 'Solo los formatos DXF, DWG, AI, PDF, EPS, CDR y ZIP son permitidos';
+    $uploadOk = 0;    
   }
-
-  /*if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-    echo "Disculpe, solo los formatos JPG, JPEG, PNG & GIF son permitidos. <br/>";
-    $uploadOk = 0;
-  }*/
 
   // Check if $uploadOk is set to 0 by an error
   if ($uploadOk == 0) {
-    echo "Error, el archivo no se ha subido al servidor. <br/>";
-    return $cart_item_data;
+    //echo "Error, el archivo no se ha subido al servidor. <br/>";
+    //$_SESSION['mensajeError'] = 'Error, el archivo no se ha subido al servidor';
   // if everything is ok, try to upload file
   } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
       //echo "El archivo ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " se ha subido con éxito. <br/>";
+
     } else {
-      echo "Disculpe, ha habido un error subiendo el archivo. <br/>";
-      return $cart_item_data;
+      //echo "Disculpe, ha habido un error subiendo el archivo. <br/>";
+      $_SESSION['mensajeError'] = 'Disculpe, ha habido un error subiendo el archivo';
     }
   }
-
-  /*
-  $precio_final         = filter_input( INPUT_POST, 'precio_final' );
-  $materiales           = filter_input( INPUT_POST, 'materiales_final' );
-  $mmGrosor             = filter_input( INPUT_POST, 'mmGrosor_final' );
-  $ancho                = filter_input( INPUT_POST, 'ancho_final' );
-  $altura               = filter_input( INPUT_POST, 'altura_final' );
-  $longitud             = filter_input( INPUT_POST, 'longitud_final' );
-  */
 
   $precio_final         = filter_input( INPUT_POST, 'precio_final' );
   $materiales           = filter_input( INPUT_POST, 'materiales' );
@@ -464,12 +474,10 @@ function iconic_add_engraving_text_to_cart_item_CortesLaser( $cart_item_data, $p
   $cart_item_data['comentario']   = $comentario;
 
   return $cart_item_data;
+
 }
 
 add_filter( 'woocommerce_add_cart_item_data', 'iconic_add_engraving_text_to_cart_item_CortesLaser', 10, 3 );
-
-
-
 
 /**
  * Display engraving text in the cart.
@@ -526,7 +534,7 @@ function iconic_display_engraving_text_cart_CortesLaser( $item_data, $cart_item 
 add_filter( 'woocommerce_get_item_data', 'iconic_display_engraving_text_cart_CortesLaser', 10, 2 );
 
 
-add_action( 'woocommerce_before_calculate_totals_CortesLaser', 'before_calculate_totals_CortesLaser', 10, 1 );
+add_action( 'woocommerce_before_calculate_totals', 'before_calculate_totals_CortesLaser', 10, 1 );
  
 function before_calculate_totals_CortesLaser( $cart_obj ) {
 
